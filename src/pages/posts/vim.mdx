@@ -1,0 +1,658 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: vim
+pubDate: 2021-07-18
+tags: ['vim']
+---
+
+`vim` - Vi IMproved, a programmer's text editor
+
+
+# Keymap
+
+## Move
+- Basic - `h` `j` `k` `l`
+- Word - `w` `b` `e` `ge`
+- Line - `^` `$` `0` `g` `G`
+- Paragraph - `{` `}`
+- Screen - `<C-d>` `<C-u>` `<C-f>` `<C-b>`
+- Char - `f` `F` `t` `T` `;`
+- Parenthesis - `%`
+- Window - `H` `M` `L`
+
+## Insert
+- `i` `a` `o`
+- `I` `A` `O`
+
+## Edit
+- `dd` `yy` `p`
+- `x` `u`
+
+- `~` - switch CASE
+
+## Search
+- `/` `?`
+- `n` `N`
+- `*` `#` - search with cursor word
+
+## Replace
+
+`:%s/foo/bar`
+
+## Scroll
+`z<CR>` `zt` `zz` `zb`
+
+## Visual
+`v` `V`
+
+`aw` `as` `ap` `a'` `a"`
+
+`iw` `iW` - inner
+
+- `w` - word
+- `W` - WORD
+- `s` - sentence
+- `p` - paragraph
+- `b` - `(...)` block 
+- `B` - `{...}` block
+- `t` - `<>...</>` block
+- `<` - `<...>` block
+- `[` - `[...]` block
+- `'` - `'...'` single quoted string
+- `"` - `"..."` double quoted string
+- `` ` `` - `` `...` `` string in backticks
+
+> A WORD is always delimited by whitespace.
+> A word is delimited by non-keyword characters, which are configurable.
+
+## Window
+
+- split - `:sp` `:vsp`
+
+- move - `<C-w>` + `h`/`j`/`k`/`l`
+
+- resize - `<C-w>` + `+`/`-`/`>`/`<`/`=`/`_`/`|`
+
+## Buffers
+
+`:bn` `:bp` `b1`
+
+`:buffers` `:ls`
+
+`bd` `bd!` - delete
+
+## Tabs
+
+`:tabnew [file]`
+
+`gt` `gT` `<N>gt`
+
+`:tabs` - List the tab pages and the windows they contain.
+
+`:tabm[ove] {count}` - move tab to index `{count}`
+
+`:tabc[lose][!] {count}` - close tab
+`:tabo[nly][!]` - close other tabs
+`:tabn[ext] {count}` - Go to tab page `{count}`
+
+`{count}` - `1`, `+`, `-`, `+3`, `-3`, `$`
+
+> :help tab-page-intro
+
+## Leader
+
+`\` - default
+
+```viml
+let mapleader = "," 
+```
+
+```viml
+:nnoremap <leader>h :noh<CR>
+```
+
+## Jump
+
+`<C-]>` `<C-o>` `<C-i>`
+
+## :cmd
+
+`:help`
+
+`:set all`
+
+`:set {option}!` `set {option}?` 
+
+`:set invlist`: `^I`表示一个`tab`
+
+`:noh`: 关闭 search highlight
+
+`:!command`: run shell command
+
+`:verbose` *`:verb`*: 检查某个命令是谁执行的: `verb set cocu`
+
+## .vimrc
+
+```viml
+set number
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+syntax on
+set hlsearch
+```
+
+- reload: `:source ~/.vimrc`
+
+# Plugins
+
+## vim-plug
+
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+```viml
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Yggdroot/LeaderF'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround'
+
+call plug#end()
+```
+
+`:PlugInstall`
+ 
+> [vim-plug](https://github.com/junegunn/vim-plug)
+
+## airline
+
+```viml
+let g:airline#extensions#tabline#enabled = 1
+```
+
+> [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
+
+## NERDTree
+
+`:NERDTree`
+
+- `t` - Open in new tab
+- `A` - FullScreen
+- `m` - Menu ()
+
+```viml
+:nnoremap <leader>n :NERDTree<CR>
+```
+
+### Git
+
+```viml
+Plug 'Xuyuanp/nerdtree-git-plugin'
+```
+
+```viml
+let g:NERDTreeGitStatusUseNerdFonts = 1
+```
+
+### Highlight
+```viml
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+```
+
+## LeaderF
+
+```viml
+Plug 'Yggdroot/LeaderF'
+```
+
+- `<leader>f`
+- `<leader>b`
+
+- `<C-t>` - Open in new tab
+- `<C-x>` - Open in split
+- `<C-]>` - Open in vertical split
+
+- `<C-j>`, `<C-k>` or the arrow keys to navigate the result list.
+
+`:Leaderf <subcommand>`
+
+```viml
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_ReverseOrder = 1
+```
+
+### Rg
+
+```viml
+:LeaderF rg
+```
+
+`.ripgreprc`
+
+```viml
+--max-columns=150
+--max-columns-preview
+--glob=!*[.-]min.js
+```
+
+```sh
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+```
+
+
+> [Yggdroot/LeaderF](https://github.com/Yggdroot/LeaderF)
+
+## indentLine
+
+indentLine will overwrite `concealcursor`
+
+```viml
+let g:indentLine_setConceal=2
+let g:indentLine_concealcursor = 'nc'
+```
+
+## Git
+
+> [airblade/vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+> [Xuyuanp/nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)
+
+> [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+> [mhinz/vim-signify](https://github.com/mhinz/vim-signify)
+
+### fugitive
+
+`:G` - status
+
+`?` - help
+
+`<CR>` - Open File
+
+`s` `u` `-` - stage/unstage
+`=` - Inline Diff
+
+`X` - Discard Change
+
+`gu` - go to Untracked
+`gU` 0 go to Unstaged
+`gs` 0 go to Staged
+
+`cc` - create a commit
+
+`:G commit`
+
+`:G push`
+
+### gitgutter
+
+```viml
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=2
+highlight GitGutterChange ctermfg=3
+highlight GitGutterDelete ctermfg=1
+highlight GitGutterChangeDelete ctermfg=4
+```
+
+```viml
+:GitGutterLineHighlightsToggle
+```
+
+## Markdown
+
+```viml
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+```
+
+```viml
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_new_list_item_indent = 2 # type o to new indent line
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_fenced_languages = ['css', 'rb=ruby', 'javascript', 'js=javascript', 'typescript', 'ts=typescript', 'json=javascript', 'ruby', 'sass', 'xml']
+```
+
+`:Toc`
+
+`]]` - go to next header.
+`[[` - go to previous header. 
+
+
+```viml
+function s:TocToggle()
+    if index(["markdown", "qf"], &filetype) == -1
+        return
+    endif
+
+    if get(getloclist(0, {'winid':0}), 'winid', 0)
+        " the location window is open
+        lclose
+    else
+        " the location window is closed
+        Toc
+    endif
+endfunction
+
+command TocToggle call s:TocToggle()
+```
+
+### Folding
+
+- `zr` - reduces fold level
+  + `zR` - open all folds
+- `zm` - increases fold level
+  + `zM` - close all folds
+
+- `zo` - open one fold under the cursor
+  + `zO` - recursively
+- `zc` - close one fold under the cursor
+  + `zC` - recursively
+- `za` - toggle one fold
+  + `zA` - recursively
+
+## Coc
+
+`:CocList extensions`
+
+```vim
+:CocInstall coc-json coc-tsserver coc-emmet coc-jedi coc-html coc-vetur coc-solargraph
+```
+
+### ruby
+
+```
+gem install solargraph
+```
+
+## Vista
+
+```vim
+Plug 'liuchengxu/vista.vim'
+```
+
+> [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim)
+
+## Others
+
+### surround.vim
+
+- `ds` - delete surround
+- `cs` - change surround
+- `ys` - you surround
+
+**alias**
+
+- `b` - `)`
+- `B` - `}`
+- `r` - `]`
+- `a` - `>`
+
+**notes**
+
+- `yss` will ignore leading whitespace
+- `f` surround with function
+    * `ysiWfprint<CR>`
+
+**Visual-mode**
+
+- `S` - surround
+
+> [tpope/vim-surround](https://github.com/tpope/vim-surround)
+
+### delimitMate
+automatic closing of quotes, parenthesis, brackets, etc.
+
+```viml
+let delimitMate_expand_cr = 1
+```
+
+> [Raimondi/delimitMate](https://github.com/Raimondi/delimitMate)
+
+### nerdcommenter
+
+`<leader>c<space>` - toggle
+
+## Theme
+
+### VS Code
+
+> [tomasiser/vim-code-dark](https://github.com/tomasiser/vim-code-dark)
+
+```viml
+Plug 'tomasiser/vim-code-dark'
+```
+
+`.vimrc`
+
+```viml
+colorscheme codedark
+let g:airline_theme = 'codedark'
+```
+
+### Icons
+
+```viml
+Plug 'ryanoasis/vim-devicons'
+```
+
+# Vim Script
+
+## Variables
+
+`let` - set a variable
+`const` - set a constant variable
+
+- `g:var` - global.
+- `a:var` - function argument.
+- `l:var` - local to function.
+- `b:var` - local to buffer.
+- `w:var` - local to window.
+- `t:var` - local to tab.
+- `s:var` - local to script.
+- `v:var` - Predefined by Vim.
+
+`:echo  v:` - list all Vim variables
+`:echo  g:` - list all global variables
+
+> :h variable-scope
+
+## Data Types
+
+### Number
+`-123` `0x10` `0177`
+### Float
+`123.456` `1.15e-6`
+### String
+`"hello"` `'world'`
+
+#### Operators
+
+```vim
+<string> == <string> " equal
+<string> != <string> " not equal
+<string> =~ <pattern> " match
+<string> !~ <pattern> " not match
+```
+
+`#` - match case
+`?` - don't match case
+
+```vim 
+echo  'Hello ' .  'world' " concat
+```
+
+### Funcref
+```vim
+:let MyFunc = function("strlen")
+:echo MyFunc('foobar) " 6
+```
+### List
+```vim
+:let mylist = [1, 2, ['a', 'b']]
+:echo mylist[0] " 1
+:echo mylist[-2] " 2
+```
+### Dict
+
+```vim
+:let mydict = {'blue': "#0000ff", 'foo': {999: "baz"}}
+```
+
+### Bool
+There is **no** `Boolean` type. Numeric value `0` is treated as falsy, while anything else is truthy.
+
+## If
+
+```vim
+if <expression>
+  " ...
+elseif <expression>
+  " ...
+else
+  " ...
+endif
+```
+
+## For
+
+```vim
+for <var> in <list>
+  continue
+  break
+endfor
+
+for [var1, var2] in [[1, 2], [3, 4]]
+  " on 1st loop, var1 = 1 and var2 = 2
+  " on 2nd loop, var1 = 3 and var2 = 4
+endfor
+```
+
+## While
+```vim
+while <expression>
+endwhile
+```
+
+## Try-Catch
+
+```vim
+try
+  " ...
+catch <pattern (optional)>
+  " HIGHLY recommended to catch specific error.
+finally
+  " ...
+endtry
+```
+
+```vim
+" throw new exception
+throw "Wrong arguments"
+```
+
+## Functions
+`function!` - overwrite a function  
+`call <function>` - execute a function
+
+```vim
+function! <Name>(arg1, arg2, etc)
+  " <function body>
+endfunction
+```
+
+```vim
+{x -> x * x} " lambda
+```
+
+## Classes
+Vim doesn’t have classes built in.
+
+```vim
+let MyClass = {foo: "Foo"}
+function MyClass.printFoo() dict
+  echo self.foo
+endfunction
+```
+
+## Misc
+
+`\` - escape line break
+
+```vim
+" regexp substitute
+:substitute/hello/Hello/
+```
+
+```vim
+" The arguments are "events", "patterns", rest is "commands"
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+```
+
+```vim
+" 
+let line = 3
+execute line .. 'delete' 
+```
+
+```vim
+" play back a sequence of normal mode commands
+" `!` to ignore user mappings
+normal! ggddGp
+```
+
+```vim
+wincmd L  
+```
+
+```vim
+" current word under cursor
+echo  expand('<cword>') 
+```
+
+```vim
+"  turn off autoindent when you paste code
+:set paste
+:set nopaste
+```
+
+
+## map
+
+`<silent>` - Execute `{command}` silently
+
+## Syntax
+
+
+## highlight
+
+```vim
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+```
+
+# Tips
+
+## clipboard
+
+```vim
+set clipboard+=unnamedplus
+```
+
+`+y` - copy
+`+p` - paste
+
+## Refs
+
+> [🕶️ vim awesome](https://vimawesome.com/)

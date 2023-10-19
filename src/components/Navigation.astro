@@ -1,0 +1,25 @@
+---
+const links = [
+  {
+    name: 'Home',
+    link: '/'
+  },
+  {
+    name: 'Blog',
+    link: '/blog/'
+  },
+  {
+    name: 'Tag',
+    link: '/tags/'
+  },
+  {
+    name: 'About',
+    link: '/about/'
+  }
+]
+---
+
+
+<div>
+  {links.map(({name, link})=> <a href={link} class="p-2 hover:text-pink transition inline-block">{name}</a>)}
+</div>

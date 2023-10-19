@@ -1,0 +1,54 @@
+/* Works on Firefox */
+* {
+  scrollbar-color: rgba(var(--ctp-pink)) rgba(var(--ctp-base));
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-track {
+  @apply bg-base;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-pink rounded-full;
+  border: 1px solid rgb(var(--ctp-base));
+}
+
+:root {
+  --astro-code-color-text: rgb(var(--ctp-teal));
+  --astro-code-color-background: rgb(var(--ctp-crust));
+  --astro-code-token-constant: rgb(var(--ctp-flamingo));
+  --astro-code-token-string: rgb(var(--ctp-green));
+  --astro-code-token-comment: rgb(var(--ctp-surface2));
+  --astro-code-token-keyword: rgb(var(--ctp-mauve));
+  --astro-code-token-parameter: rgb(var(--ctp-lavender));
+  --astro-code-token-function: rgb(var(--ctp-blue));
+  --astro-code-token-string-expression: rgb(var(--ctp-green));
+  --astro-code-token-punctuation: rgb(var(--ctp-subtext0));
+  --astro-code-token-link: rgb(var(--ctp-pink));
+}
+
+html {
+  font-family: system-ui, sans-serif;
+}
+
+a {
+  @apply hover:text-pink transition;
+}
+
+code {
+  font-family:
+    Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+}

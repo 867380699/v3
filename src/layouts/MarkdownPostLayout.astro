@@ -1,0 +1,166 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+import '../styles/md.scss'
+---
+
+<Layout title={frontmatter.title}>
+  <main class="blog h-full overflow-auto relative flex">
+    <div class="post-container w-full overflow-auto">
+      <div class="post px-4">
+        <h1 class="title">{frontmatter.title}</h1>
+        <div class="flex justify-end text-sm"><span>{frontmatter.pubDate.slice(0,10)}</span></div>
+        <hr />
+        <slot />
+      </div> 
+    </div>
+  </main>
+</Layout>
+
+<script is:inline>
+  const toc = document.querySelector('.toc');
+  const blog = document.querySelector('.blog');
+  if (toc && blog) {
+    blog.prepend(toc);
+  }
+</script>
+
+<style is:global lang="scss">
+.blog {
+  height: calc(100vh - 56px);
+
+}
+.toc {
+  @apply sticky left-0 top-0 p-2 bg-surface0 overflow-auto z-10 shrink-0;
+  height: calc(100vh - 56px);
+  max-width: min(240px, 30%);
+  flex-basis: min(240px, 30%);
+
+  .toc-level .toc-level {
+    @apply ml-4;
+  }
+}
+.post {
+  max-width: 800px;
+  margin: auto;
+
+  h1.title {
+    @apply bg-gradient-to-r from-mauve to-maroon font-bold;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  h1 {
+    @apply text-mauve text-5xl py-2 mt-4 leading-10;
+  }
+  h2 {
+    @apply text-subtext1 text-2xl leading-10 py-3;
+  }
+  h3,h4,h5,h6 {
+    @apply text-xl text-subtext0 leading-8;
+  }
+
+  a {
+    @apply text-pink;
+  }
+
+  p {
+    text-align: justify;
+  }
+  
+  code {
+    line-height: 1.5rem;
+  }
+
+  hr {
+    color: #ccc;
+    background: #ccc;
+    height: 1px;
+    border: none 0;
+    font-size: 0px;
+    margin-bottom: 16px;
+    transform: scaleY(0.5);
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  iframe {
+    width: 100%;
+    border: 1px solid #dedede;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 30px;
+    > li {
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0.75em;
+        left: -20px;
+        width: 12px;
+        height: 2px;
+        background-color: #aaa;
+        z-index: 10;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 0;
+        top: 0.8em;
+        left: -20px;
+        transition: all ease-in-out 200ms;
+      }
+      &:last-child::after {
+        content: none;
+      }
+    }
+    &:hover li {
+      &::after {
+        width: 2px;
+        background-color: #aaa;
+      }
+    }
+  }
+
+  p code, li > code, td code {
+    @apply text-red rounded;
+    background-color: rgba(var(--ctp-red), 0.1);
+    padding: 2px 4px;
+  }
+  
+  blockquote {
+    @apply bg-mantle my-2 rounded text-subtext0;
+    padding: 10px 20px;
+    p {
+      overflow-x: auto;
+      margin-bottom: 0px;
+    }
+    li {
+      color: #888;
+    }
+  }
+
+  pre {
+    @apply rounded pl-8 py-2 my-2 border border-surface0;
+    
+    code {
+      @apply block leading-tight px-2 py-1 border-l border-surface0;
+      counter-reset: step;
+      counter-increment: step 0;
+      .line {
+        @apply relative;
+        &::before {
+          @apply absolute overflow-hidden w-7 h-4 -left-11 top-0 text-right text-surface1;
+          content: counter(step);
+          counter-increment: step;
+        }
+      }
+    }
+  }
+}
+</style>
