@@ -78,7 +78,7 @@ import '../styles/md.scss'
     height: 1px;
     border: none 0;
     font-size: 0px;
-    margin-bottom: 16px;
+    margin: 16px 0;
     transform: scaleY(0.5);
   }
 
@@ -161,6 +161,16 @@ import '../styles/md.scss'
         }
       }
     }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+      @apply bg-crust;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: 1px solid rgb(var(--ctp-crust));
+    }
+
+
   }
 }
 </style>
