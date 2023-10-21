@@ -1,7 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const title = 'About Me';
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const skills = [
+	{ name: "HTML", icon:'icon-[devicon--html5]'}, 
+	{ name: "CSS", icon: 'icon-[devicon--css3]'},
+	{ name: "SCSS", icon: 'icon-[logos--sass]'},
+	{ name: "JavaScript", icon: 'icon-[logos--javascript]'},
+	{ name: "TypeScript", icon: 'icon-[logos--typescript-icon]'},
+	{ name: "Pnpm", icon: 'icon-[logos--pnpm]'},
+	{ name: "Node.js", icon: 'icon-[logos--nodejs-icon]'},
+	{ name: "Astro", icon: 'icon-[logos--astro-icon]'},
+	{ name: "Iconify", icon: 'icon-[simple-icons--iconify]'},
+	{ name: "Tailwind", icon: 'icon-[logos--tailwindcss-icon]'},
+	{ name: "Preact", icon: 'icon-[logos--preact]'},
+	{ name: "Git", icon: 'icon-[logos--git-icon]'},
+	{ name: "Github", icon: 'icon-[logos--github-icon]'},
+	{ name: "Netlify", icon: 'icon-[logos--netlify-icon]'},
+	{ name: "Visual Studio Code", icon: 'icon-[logos--visual-studio-code]'},
+	{ name: "Chrome", icon: 'icon-[logos--chrome]'},
+	{ name: "NixOS", icon: 'icon-[devicon--nixos]'},
+	{ name: "Writing Docs", icon: 'icon-[logos--mdx]'},
+]
 ---
 
 <Layout title={title}>
@@ -13,8 +32,8 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 
     <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
 
-    <ul class="space-x-4">
-      {skills.map((skill) => <li class="badge">{skill}</li>)}
+    <ul class="flex flex-wrap">
+      {skills.map((skill) => <li class="badge badge-lg px-3 py-4 space-x-1 m-1"><i class={skill.icon}/><span>{skill.name}</span></li>)}
     </ul>
 	</main>
 </Layout>

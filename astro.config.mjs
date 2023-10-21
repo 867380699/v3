@@ -6,8 +6,11 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkDirective from 'remark-directive';
 import remarkBreaks from 'remark-breaks';
-import {visit} from 'unist-util-visit';
-import {h} from 'hastscript';
+import remarkEmoji from 'remark-gemoji';
+import remarkTwemoji from 'remark-twemoji';
+
+import xDirective from './src/directives/xDirective.ts';
+import iDirective from './src/directives/iDirective.ts';
 
 
 import mdx from "@astrojs/mdx";
@@ -19,26 +22,11 @@ export default defineConfig({
     shikiConfig: { theme: 'css-variables' },
     remarkPlugins: [
       remarkBreaks,
+      remarkEmoji,
+      // remarkTwemoji,
       remarkDirective,
-      () => {
-        return (tree, file) => {
-          visit(tree, function (node) {
-            if (['containerDirective', 'leafDirective', 'textDirective'].includes(node.type)) {
-              const data = node.data || (node.data = {});
-              const tagName = node.type === 'textDirective' ? 'span' : 'div';
-              if (node.name === 'x') {
-                data.hName = tagName;
-                data.hProperties = h(tagName, node.attributes || {}).properties;
-              } else if (node.name === 'demo') {
-                data.hName = tagName;
-                data.hProperties = h(tagName, {class: 'demo'}).properties;
-              } else {
-                console.log('directive', node)
-              }
-            }
-          })
-        }
-      }
+      xDirective,
+      iDirective
     ],
     rehypePlugins: [
       rehypeSlug, 
