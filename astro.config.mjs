@@ -8,6 +8,9 @@ import remarkDirective from 'remark-directive';
 import remarkBreaks from 'remark-breaks';
 import remarkEmoji from 'remark-gemoji';
 import remarkTwemoji from 'remark-twemoji';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeDocument from 'rehype-document';
 
 import xDirective from './src/directives/xDirective.ts';
 import iDirective from './src/directives/iDirective.ts';
@@ -23,6 +26,7 @@ export default defineConfig({
     remarkPlugins: [
       remarkBreaks,
       remarkEmoji,
+      remarkMath,
       // remarkTwemoji,
       remarkDirective,
       xDirective,
@@ -31,7 +35,9 @@ export default defineConfig({
     rehypePlugins: [
       rehypeSlug, 
       [rehypeAutolinkHeadings, { behavior: 'wrap'}], 
-      [rehypeToc, {}]
+      [rehypeToc, {}],
+      [rehypeDocument, {}],
+      rehypeKatex,
     ]
   },
   integrations: [preact(), tailwind(), mdx()]

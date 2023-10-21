@@ -1,11 +1,14 @@
 ---
 import Layout from './Layout.astro';
-const { frontmatter } = Astro.props;
+const { frontmatter, content } = Astro.props;
 import '../styles/md.scss'
+
+const isMath = content.tags.includes('math');
 ---
 
 <Layout title={frontmatter.title}>
-  <main class="blog h-full overflow-auto relative flex">
+  {isMath && <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">}
+  <main class="blog h-full overflow-hidden relative flex">
     <div class="post-container w-full overflow-auto">
       <div class="post px-4">
         <h1 class="title">{frontmatter.title}</h1>
@@ -169,8 +172,11 @@ import '../styles/md.scss'
     &::-webkit-scrollbar-thumb {
       border: 1px solid rgb(var(--ctp-crust));
     }
+  }
 
-
+  .katex-display,
+  mjx-container {
+    @apply bg-mantle p-2 rounded max-w-full overflow-auto;
   }
 }
 </style>
