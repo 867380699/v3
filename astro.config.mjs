@@ -21,6 +21,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
+  base: process.env.ASTRO_BASE || '/',
   markdown: {
     shikiConfig: { theme: 'css-variables' },
     remarkPlugins: [
