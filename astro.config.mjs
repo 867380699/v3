@@ -12,8 +12,8 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeDocument from 'rehype-document';
 
-import xDirective from './src/directives/xDirective.ts';
-import iDirective from './src/directives/iDirective.ts';
+import xDirective from './src/remark/directive/xDirective.ts';
+import iDirective from './src/remark/directive/iDirective.ts';
 
 
 import mdx from "@astrojs/mdx";
