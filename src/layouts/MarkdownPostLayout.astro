@@ -94,6 +94,10 @@ const isMath = content.tags.includes('math');
     border: 1px solid #dedede;
   }
 
+  ol {
+    list-style: decimal;
+    padding-left: 24px;
+  }
   ul {
     list-style: none;
     padding-left: 30px;
@@ -139,6 +143,9 @@ const isMath = content.tags.includes('math');
   blockquote {
     @apply bg-mantle my-2 rounded text-subtext0;
     padding: 10px 20px;
+    code {
+      opacity: 0.6; 
+    }
     p {
       overflow-x: auto;
       margin-bottom: 0px;

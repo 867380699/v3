@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin')
 const { addDynamicIconSelectors } = require('@iconify/tailwind');
 const daisyui = require('daisyui');
 const catppuccin = require("@catppuccin/tailwindcss");
@@ -10,6 +11,9 @@ export default {
 		extend: {},
 	},
 	plugins: [
+		plugin(function({ addBase, theme }) {
+			addBase({})
+    }),
 		addDynamicIconSelectors(),
 		daisyui,
 		catppuccin({
