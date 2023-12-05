@@ -1,25 +1,26 @@
 ---
+import BaseLink from "./BaseLink.astro";
 const links = [
   {
     name: 'Home',
-    link: '/'
+    link: ''
   },
   {
     name: 'Blog',
-    link: '/blog/'
+    link: 'blog'
   },
   {
     name: 'Tag',
-    link: '/tags/'
+    link: 'tags'
   },
   {
     name: 'About',
-    link: '/about/'
+    link: 'about'
   }
 ]
 ---
 
 
 <div>
-  {links.map(({name, link})=> <a href={link} class="p-2 hover:text-pink transition inline-block">{name}</a>)}
+  {links.map(({name, link})=> <BaseLink href={link} class="p-2 hover:text-pink transition inline-block">{name}</BaseLink>)}
 </div>

@@ -18,10 +18,12 @@ import iDirective from './src/directives/iDirective.ts';
 
 import mdx from "@astrojs/mdx";
 
+const base = process.env.ASTRO_BASE || '/';
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
-  base: process.env.ASTRO_BASE || '/',
+  base,
   markdown: {
     shikiConfig: { theme: 'css-variables' },
     remarkPlugins: [
