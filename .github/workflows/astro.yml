@@ -52,8 +52,7 @@ jobs:
       - name: Build with Astro
         run: |
           ASTRO_BASE="/v3/" pnpm run build \
-            --site "${{ steps.pages.outputs.origin }}" \
-            --base "${{ steps.pages.outputs.base_path }}"
+            --site "${{ steps.pages.outputs.origin }}"
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
