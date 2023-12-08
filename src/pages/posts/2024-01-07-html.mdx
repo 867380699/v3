@@ -1,0 +1,97 @@
+---
+
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "HTML 笔记1"
+pubDate: 2018-11-23
+tags: [web, html]
+
+---
+
+HyperText Markup Language
+
+> HTML 4 is an SGML application
+
+> XHTML
+> A stricter version of HTML *(development has largely been discontinued)*
+> \
+> Some key features:
+> - requires end tags
+> - supports namespaces
+
+# History
+
+| version   | date    |
+| --------- | ------- |
+| HTML 2    | 1995.11 |
+| HTML 3    | 1997.01 |
+| HTML 4    | 1997.12 |
+| HTML 4.01 | 1999.12 |
+| HTML 5    | 2014.10 |
+| HTML 5.1  | 2016.11 |
+| HTML 5.2  | 2017.12 |
+
+> [HTML publication history](https://www.w3.org/standards/history/html/)
+> [HTML 4.01 Specification](https://www.w3.org/TR/html401/)
+> [HTML 5 Specification](https://www.w3.org/TR/2018/SPSD-html5-20180327/)
+> [HTML 5.1 Specification](https://www.w3.org/TR/2021/SPSD-html51-20210128/)
+> [HTML 5.2 Specification](https://www.w3.org/TR/2021/SPSD-html52-20210128/)
+> [HTML 5.3 Specification](https://www.w3.org/TR/2021/NOTE-html53-20210128/)
+> [Living Standard](https://html.spec.whatwg.org/)
+> [Living Standard - Github](https://github.com/whatwg/html)
+
+# Elements
+
+- `html`
+  + `head`
+    * `title`
+    * `link`
+    * `meta`
+    * `base`
+    * `style`
+    * `script`
+    * `noscript`
+  + `body`
+    * `h1` `h2`, `h3`, `h4`, `h5`, `h6`
+    * `div`, `p`, `pre`, `blockquote`
+    * `a`, `img`, `br`, `hr`
+    * `b`, `u`, `i`, `s`, `em`, `strong`, `code`, `span`, `del`, `ins`, `q`
+    * `ul`, `ol`, `li`
+    * `table`, `thead`, `tbody`, `tfoot`, `th`, `tr`, `td`, `caption`, `colgroup`, `col`
+    * `form`, `input`, `textarea`, `label`, `button`, `select`, `optgroup`, `option`, `fieldset`, `legend`
+    * `iframe`
+    * `object`, `param`
+    * `small`, `sub`, `sup`
+    * `abbr`, `address`, `cite`, `kbd`, `dfn`, `var`, `samp`
+    * `map`, `area`
+    * `dl`, `dt`, `dd`
+    * `bdo`
+- *Deprecated*
+  + *~~`frameset`~~*, *~~`frame`~~*, *~~`noframes`~~*
+  + *~~`acronym`~~*, *~~`tt`~~*, *~~`big`~~*
+  + *HTML4*
+    * *~~`applet`~~*, *~~`center`~~*, *~~`dir`~~*, *~~`font`~~*, *~~`isindex`~~*, *~~`menu`~~*, *~~`strike`~~*, 
+
+
+## HTML 5 new elements
+
+- `main`, `header`, `footer`
+- `article`, `aside`, `section`, `nav`
+- `audio`, `canvas`, `embed`, `video`, `source`, `track`
+- `progress`, `meter`
+- `template`, `slot`
+- `datalist`, `output`
+- `figure`, `figcaption`
+- `picture`
+- `details`, `summary`
+- `mark`
+- `data`, `time`
+- `wbr`
+- `bdi`
+- `ruby`, `rp`, `rt`, *~~`rb`~~*, *~~`rtc`~~*
+
+
+
+> An unknown element will be treated as an inline element, similar to a `span`.
+
+> [Elements Table - spec.whatwg.org](https://html.spec.whatwg.org/multipage/indices.html#elements-3)
+
